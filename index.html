@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Simulador do protocolo FTP">
+        <meta name="author" content="Sila Siebert">
+
+        <title>Simulador FTP</title>
+
+        <!-- Bootstrap Core CSS -->
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.progressTimer.js"></script>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <script type="text/javascript" src="js/ftp.js"></script>	
+        <!-- Custom CSS -->
+        <style>
+            body {
+                padding-top: 70px;
+                /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+            }
+        </style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        <div id="wrap">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">Simulador FTP</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Simulador</a></li>
+                            <li><a href="uso.html">Sobre</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+            <!-- Page Content -->
+            <div class="container">
+                <div class="row">
+
+
+                    <!-- Dados de conexaoi com o servidor-->
+                    <div class="col-md-12"><form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label for="host">Host</label>
+                                <input type="text" class="form-control" id="host" data-toggle="popover" title="Servidor" data-content="IP: 172.16.62.36" data-trigger="hover" data-placement="top">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="user">User:</label>
+                                <input type="text" class="form-control" id="user" data-toggle="popover" title="Senha" data-content="Usuario padrao: admin" data-trigger="hover" data-placement="top">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="pwd" data-toggle="popover" title="Senha" data-content="Senha padrao: admin" data-trigger="hover" data-placement="top">
+                            </div>
+                            <button type="button" class="btn btn-success" onclick="conectar();"><span class="glyphicon glyphicon-ok-circle"></span> Login</button>
+
+                            <button  type="button" class="btn btn-danger" onclick="desconectar();"><span class="glyphicon glyphicon-remove-circle"></span> Logout</button>
+                        </form></div>
+
+
+                    <!-- Mensagens e arquivos no cliente-->
+                    <div class="col-md-4"><h1>Cliente</h1>
+                        <div class="form-group">
+                            <label for="commands">Comandos</label>
+                            <textarea class="form-control" rows="5" id="commands"></textarea>
+                        </div>
+
+                        <form class="form" role="form">
+                            <div class="form-group">
+                                <label for="new">Novo arquivo:</label>
+                                <input type="text" class="form-control" id="new">
+                            </div>
+
+                            <button   type="button" class="btn btn-default" onclick="criarArquivo();">Criar</button>
+
+
+
+                            <div class="form-group">
+                                <label for="send">Enviar arquivo:</label>
+                                <input type="text" class="form-control" id="send">
+                            </div>
+                            <button  type="button"  class="btn btn-info"  onclick="enviarArquivo();"><span class="glyphicon glyphicon-open"></span> Enviar</button>
+
+
+
+                        </form>
+
+                        <div class="form-group">
+                            <label for="locais">Arquivos locais</label>
+                            <textarea class="form-control" rows="5" id="locais"></textarea>
+                        </div>
+
+                    </div>
+
+
+                    <!--                BArra de progresso -->
+
+                    <div class="col-md-4 vert-offset-top-12">
+
+                        <div class="form-group">
+
+                            <div id="progressTimer"></div>
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4">
+
+
+                        <!-- Mensagens e arquivos no servidor-->
+
+                        <h1>Servidor</h1>
+                        <form class="form" role="form">
+                            <div class="form-group">
+                                <p>IP: 172.16.62.36 </p>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger btn-large" onclick="atdesServ();"><i class="icon-white icon-off"></i> On/Off</button></div>
+                            <div class="form-group">  <h2> <span class="label label-success" id="estadoServidor">Servidor offline</span></h2></div>
+                        </form>
+
+                        <div class="form-group">
+                            <label for="responses">Respostas</label>
+                            <textarea class="form-control" rows="5" id="responses"></textarea>
+                        </div>
+
+
+
+
+                        <form class="form" role="form">
+                            <div class="form-group">
+                                <label for="receive">Baixar arquivo:</label>
+                                <input type="text" class="form-control" id="receive">
+                            </div>
+                            <button type="button" class="btn btn-info" onclick="receberArquivo();"><span class="glyphicon glyphicon-save"></span> Baixar</button>
+                           
+                            
+                            <div class="form-group">
+                                <label for="remotos">Arquivos remotos</label>
+                                <textarea class="form-control" rows="5" id="remotos"></textarea>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted credit">Developped by Sila Siebert</p>
+            </div>
+        </div>
+
+    </body>
+
+</html>

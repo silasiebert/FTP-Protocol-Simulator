@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Simulador do protocolo FTP">
+        <meta name="author" content="Sila Siebert">
+
+
+        <title>Simulador FTP</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <style>
+            body {
+                padding-top: 70px;
+                /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+            }
+        </style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        <div id="wrap">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">Simulador FTP</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Simulador</a></li>
+                            <li><a href="uso.html">Sobre</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+
+            <!-- Page Content -->
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Como utilizar o simulador do protocolo FTP</h1>
+                        <div class="container">
+                            <h2>Instruções de uso</h2>
+                            <ol>
+                                <li> Para utilizar o simulador, primeiro ligue o servidor e informe o IP do servidor IP: 172.16.62.36. </li>
+                                <li>  Como dados de usuário use admin como nome de usuário e admin como senha.</li>
+                                <li>  Crie um arquivo ou transfira um arquivo existente degitenado o nome do arquivo e cliqaundo no botão enviar.</li>
+                                <li>    Para baixar um arquivo digite o nome do arquivo e clique no botão baixar.</li>
+                            </ol>
+                            <h2>  Simulações implementadas </h2>
+                            <ul>
+
+                                <li>  Conectar com um servidor remoto</li>
+                                <li>  Validação do usuário pelo servidor </li>
+                                <li>  Subir arquivos ao servidor</li>
+                                <li> Baixar arquivos do servidor</li>
+                                <li>    Se desligar o servidor durante uma transferência de arquivos a transferência e abortada./li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <!-- /.container -->
+
+            <!-- jQuery Version 1.11.1 -->
+            <script src="js/jquery.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted credit">Developped by Sila Siebert</p>
+            </div>
+        </div>
+
+    </body>
+
+</html>
